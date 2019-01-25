@@ -4,31 +4,31 @@ import Table from './Table';
 
 class App extends Component {
     state = {
-        characters: []
+        items: []
     };
 
-    removeCharacter = index => {
-        const { characters } = this.state;
+    removeItem = index => {
+        const { items } = this.state;
 
         this.setState({
-            characters: characters.filter((character, i) => {
+            items: items.filter((item, i) => {
                 return i !== index;
             })
         })
     };
 
-    handleSubmit = character => {
-        this.setState({characters: [...this.state.characters, character]})
+    handleSubmit = item => {
+        this.setState({items: [...this.state.items, item]})
     };
 
     render() {
-        const { characters } = this.state;
+        const { items } = this.state;
 
         return (
         <div className="container">
           <Table
-              characterData={characters}
-              removeCharacter={this.removeCharacter}
+              itemData={items}
+              removeItem={this.removeItem}
           />
           <Form handleSubmit={this.handleSubmit} />
         </div>
