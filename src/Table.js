@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import TableRow from './TableRow';
 
 const TableHeader = () => {
     return (
@@ -6,6 +7,7 @@ const TableHeader = () => {
         <tr>
             <th>Name</th>
             <th>Notes</th>
+            <th>Edit</th>
             <th>Delete</th>
         </tr>
       </thead>
@@ -15,15 +17,14 @@ const TableHeader = () => {
 const TableBody = props => {
     const rows = props.itemData.map((row, index) => {
         return (
-            <tr key={index}>
-                <td>{row.name}</td>
-                <td>{row.notes}</td>
-                <td>
-                    <button onClick={() => props.removeItem(index)}>
-                        Delete
-                    </button>
-                </td>
-            </tr>
+            <TableRow
+                key={index}
+                index={index}
+                name={row.name}
+                notes={row.notes}
+                updateItem={props.updateItem}
+                removeItem={props.removeItem}
+            />
         );
     });
 
@@ -32,12 +33,13 @@ const TableBody = props => {
 
 class Table extends Component {
     render() {
-        const { itemData, removeItem } = this.props;
+        const { itemData, updateItem, removeItem } = this.props;
         return (
             <table>
                 <TableHeader />
                 <TableBody
                     itemData={itemData}
+                    updateItem={updateItem}
                     removeItem={removeItem}
                 />
             </table>

@@ -4,7 +4,14 @@ import Table from './Table';
 
 class App extends Component {
     state = {
-        items: []
+        items: [
+            { name: 'Sencha', notes: 'grassy' }
+        ]
+    };
+
+    updateItem = index => {
+        // todo: implement for real
+        console.log('Updating ' + index)
     };
 
     removeItem = index => {
@@ -28,6 +35,7 @@ class App extends Component {
         <div className="container">
           <Table
               itemData={items}
+              updateItem={this.updateItem}
               removeItem={this.removeItem}
           />
           <Form handleSubmit={this.handleSubmit} />
